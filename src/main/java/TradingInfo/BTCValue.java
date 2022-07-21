@@ -1,75 +1,36 @@
 package TradingInfo;
 
-import netscape.javascript.JSException;
-import netscape.javascript.JSObject;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
-import java.net.URLConnection;
 
 public class BTCValue {
-    static JSObject BTCexchangeRate = new JSObject() {
-        @Override
-        public Object call(String methodName, Object... args) throws JSException {
-            return null;
-        }
-
-        @Override
-        public Object eval(String s) throws JSException {
-            return null;
-        }
-
-        @Override
-        public Object getMember(String name) throws JSException {
-            return null;
-        }
-
-        @Override
-        public void setMember(String name, Object value) throws JSException {
-
-        }
-
-        @Override
-        public void removeMember(String name) throws JSException {
-
-        }
-
-        @Override
-        public Object getSlot(int index) throws JSException {
-            return null;
-        }
-
-        @Override
-        public void setSlot(int index, Object value) throws JSException {
-
-        }
-    };
+    static String BTCexchangeRate ;
 
     public static boolean connect() throws IOException {
        // URL url = new URL("https://blockchain.info/tobtc?currency=EUR&value=500");//vrátí jednu hodnotu
         URL url = new URL("https://blockchain.info/ticker");//vrátí json
 
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
-        int responseCode = con.getResponseCode();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection(); //open connection
+        con.setRequestMethod("GET");    //set the method
+        con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"); //property find in devTols in chrome
+        int responseCode = con.getResponseCode(); //response code
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
-                    con.getInputStream()));
+                    con.getInputStream())); //get response
             String inputLine;
             StringBuffer response = new StringBuffer();
 
             while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                response.append(inputLine+"\n"); //safe response in var
             }
-            BTCexchangeRate = response;
+            BTCexchangeRate = response.toString();
             in.close();
 
             // print result
-            System.out.println(response.toString());
+            System.out.println(BTCexchangeRate);
         } else {
             System.out.println("GET request not worked");
         }
@@ -83,4 +44,3 @@ public class BTCValue {
 
     }
 }
-//popsat co se kde děje
