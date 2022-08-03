@@ -7,6 +7,7 @@ public class BTCTrader {
             System.out.println("Hello BTC");
             BTCValue trade = new BTCValue();
             trade.connect();
+            trade.getBTCValue();
         }
 
 }

@@ -1,5 +1,9 @@
 package TradingInfo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,7 +34,7 @@ public class BTCValue {
             in.close();
 
             // print result
-            System.out.println(BTCexchangeRate);
+           // System.out.println(BTCexchangeRate);
         } else {
             System.out.println("GET request not worked");
         }
@@ -39,6 +43,21 @@ public class BTCValue {
         return true;
     }
 
+    public long getBTCValue() throws JsonProcessingException {//??
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String btCexchangeRate = this.BTCexchangeRate;
+
+            //Rate actualRate = mapper.readValue(btCexchangeRate, Rate.class);
+            JsonNode jsonNode = mapper.readTree(btCexchangeRate);
+            Rate actualRate = new Rate(jsonNode.get("USD.sell").longValue(), jsonNode.get("USD.sell").longValue(),jsonNode.get("USD.sell").longValue());
+            System.out.println("new buy:" + actualRate.getBuy());
+            return 0;
+        }catch(final Exception e){
+            e.printStackTrace(); //??
+            return  1;
+        }
+    }
 
     public BTCValue() throws IOException {
 
