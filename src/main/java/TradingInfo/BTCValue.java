@@ -47,11 +47,13 @@ public class BTCValue {
         try {
             ObjectMapper mapper = new ObjectMapper();
             String btCexchangeRate = this.BTCexchangeRate;
+            System.out.println(btCexchangeRate); // vypíše celý json
 
             //Rate actualRate = mapper.readValue(btCexchangeRate, Rate.class);
             JsonNode jsonNode = mapper.readTree(btCexchangeRate);
-            Rate actualRate = new Rate(jsonNode.get("USD.sell").longValue(), jsonNode.get("USD.sell").longValue(),jsonNode.get("USD.sell").longValue());
-            System.out.println("new buy:" + actualRate.getBuy());
+           // Rate actualRate = new Rate(jsonNode.get("USD.sell").longValue(), jsonNode.get("USD.sell").longValue(),jsonNode.get("USD.sell").longValue());
+           // System.out.println("new buy:" + actualRate.getBuy());
+
             return 0;
         }catch(final Exception e){
             e.printStackTrace(); //??
