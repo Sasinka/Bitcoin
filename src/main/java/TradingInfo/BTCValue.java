@@ -43,22 +43,23 @@ public class BTCValue {
         return true;
     }
 
-    public long getBTCValue() throws JsonProcessingException {//??
-        try {
+    public long getBTCValue() throws JsonProcessingException {
+
             ObjectMapper mapper = new ObjectMapper();
             String btCexchangeRate = this.BTCexchangeRate;
             System.out.println(btCexchangeRate); // vypíše celý json
 
-            //Rate actualRate = mapper.readValue(btCexchangeRate, Rate.class);
-            JsonNode jsonNode = mapper.readTree(btCexchangeRate);
-           // Rate actualRate = new Rate(jsonNode.get("USD.sell").longValue(), jsonNode.get("USD.sell").longValue(),jsonNode.get("USD.sell").longValue());
-           // System.out.println("new buy:" + actualRate.getBuy());
+
+            //Jako json node
+        JsonNode jsonNode = mapper.readTree(btCexchangeRate);
+        String sell = jsonNode.get("USD").toString();
+        System.out.println("sell"+ sell);
+
+        //Currency euro = new Currency() ;
+            // euro = mapper.readValue(btCexchangeRate, Currency.class);
 
             return 0;
-        }catch(final Exception e){
-            e.printStackTrace(); //??
-            return  1;
-        }
+
     }
 
     public BTCValue() throws IOException {
