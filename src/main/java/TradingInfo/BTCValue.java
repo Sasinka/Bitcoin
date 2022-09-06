@@ -1,5 +1,7 @@
 package TradingInfo;
 
+
+import Currency.Currency;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,9 +56,12 @@ public class BTCValue {
         JsonNode jsonNode = mapper.readTree(btCexchangeRate);
         String sell = jsonNode.get("USD").toString();
         System.out.println("sell"+ sell);
+        JsonNode getDeeperjsonNode = mapper.readTree(sell);
 
-        //Currency euro = new Currency() ;
-            // euro = mapper.readValue(btCexchangeRate, Currency.class);
+        Currency eur = new Currency(getDeeperjsonNode.get("symbol").toString(), getDeeperjsonNode.get("buy").asInt(), getDeeperjsonNode.get("sell").asInt(),getDeeperjsonNode.get("15m").asInt(), getDeeperjsonNode.get("last").asInt());
+
+        System.out.println("sell"+ eur.getSell());
+
 
             return 0;
 
