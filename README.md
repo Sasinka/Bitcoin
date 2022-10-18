@@ -7,7 +7,7 @@ Do an app that calls api, and on the result it decided if it sell, buy or  hold 
 Step 1: DONE
 Read the api.
 
-Step 2: IN PROGRESS
+Step 2: DONE
 Parse api and write the answer.
 
 Step 3: 
