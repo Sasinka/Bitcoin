@@ -1,11 +1,11 @@
 package TradingInfo;
 
-public class Rate {
+public class Trade {
     private long last;
     private long buy;
     private long sell;
 
-    public Rate(long last, long buy, long sell) {
+    public Trade(long last, long buy, long sell) {
         this.last = last;
         this.buy = buy;
         this.sell = sell;
