@@ -18,14 +18,14 @@ public class StockHistory {
         LinkedList<Currency> priceEvaluation = new LinkedList<>();
     }
 
-    public void addCurrency(Currency currency){
+    public void addCurrency(Currency currency) {
         this.priceEvaluation.add(currency);
 
     }
 
 
     public LinkedList<Currency> getPriceEvaluation() {//todo
-        if(this.priceEvaluation.size()==0){
+        if (this.priceEvaluation.size() == 0) {
             this.priceEvaluation = new LinkedList<>();
         }
         return this.priceEvaluation;

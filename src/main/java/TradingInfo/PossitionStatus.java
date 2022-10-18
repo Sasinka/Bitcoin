@@ -19,13 +19,12 @@ public class PossitionStatus {
         this.holdingState = tradeStatus();
     }
 
-    public HoldingState tradeStatus(){
-        if(this.stockHistory.getPriceEvaluation().size()<2){
+    public HoldingState tradeStatus() {
+        if (this.stockHistory.getPriceEvaluation().size() < 2) {
             return HoldingState.notEnoughInfo;//not enough info
-        }else if(this.stockHistory.getPriceEvaluation().getLast().getSell()>this.stockHistory.getPriceEvaluation().getFirst().getBuy())
-        {
+        } else if (this.stockHistory.getPriceEvaluation().getLast().getSell() > this.stockHistory.getPriceEvaluation().getFirst().getBuy()) {
             return HoldingState.SELL;
-        }else {
+        } else {
             return HoldingState.BUY;
         }
 

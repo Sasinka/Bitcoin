@@ -13,10 +13,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class BTCValue {
-    static String BTCexchangeRate ;
+    static String BTCexchangeRate;
 
     public static boolean connect() throws IOException {
-       // URL url = new URL("https://blockchain.info/tobtc?currency=EUR&value=500");//vrátí jednu hodnotu
+        // URL url = new URL("https://blockchain.info/tobtc?currency=EUR&value=500");//vrátí jednu hodnotu
         URL url = new URL("https://blockchain.info/ticker");//vrátí json
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection(); //open connection
@@ -30,13 +30,13 @@ public class BTCValue {
             StringBuffer response = new StringBuffer();
 
             while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine+"\n"); //safe response in var
+                response.append(inputLine + "\n"); //safe response in var
             }
             BTCexchangeRate = response.toString();
             in.close();
 
             // print result
-           // System.out.println(BTCexchangeRate);
+            // System.out.println(BTCexchangeRate);
         } else {
             System.out.println("GET request not worked");
         }
@@ -47,20 +47,20 @@ public class BTCValue {
 
     public Currency getBTCValue() throws JsonProcessingException {
 
-            ObjectMapper mapper = new ObjectMapper();
-            String BTCexchangeRate = this.BTCexchangeRate;
-            System.out.println(BTCexchangeRate); // vypíše celý json
+        ObjectMapper mapper = new ObjectMapper();
+        String BTCexchangeRate = this.BTCexchangeRate;
+        System.out.println(BTCexchangeRate); // vypíše celý json
 
 
-            //Jako json node
+        //Jako json node
         JsonNode jsonNode = mapper.readTree(BTCexchangeRate);
         String sell = jsonNode.get("USD").toString();
-        System.out.println("sell"+ sell);
+        System.out.println("sell" + sell);
         JsonNode getDeeperjsonNode = mapper.readTree(sell);
 
-        Currency eur = new Currency(getDeeperjsonNode.get("symbol").toString(), getDeeperjsonNode.get("buy").asInt(), getDeeperjsonNode.get("sell").asInt(),getDeeperjsonNode.get("15m").asInt(), getDeeperjsonNode.get("last").asInt());
+        Currency eur = new Currency(getDeeperjsonNode.get("symbol").toString(), getDeeperjsonNode.get("buy").asInt(), getDeeperjsonNode.get("sell").asInt(), getDeeperjsonNode.get("15m").asInt(), getDeeperjsonNode.get("last").asInt());
 
-        System.out.println("sell: "+ eur.getSell());
+        System.out.println("sell: " + eur.getSell());
 
 
         return eur;
