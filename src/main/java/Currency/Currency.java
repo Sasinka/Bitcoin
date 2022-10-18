@@ -1,5 +1,5 @@
 package Currency;
-
+//todo přidat timestamp
 public class Currency {
     private String name;
     private int buy;

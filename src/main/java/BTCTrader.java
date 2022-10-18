@@ -1,3 +1,4 @@
+import PriceEvolution.StockHistory;
 import TradingInfo.BTCValue;
 
 import java.io.IOException;
@@ -7,7 +8,8 @@ public class BTCTrader {
             System.out.println("Hello BTC");
             BTCValue trade = new BTCValue();
             trade.connect();
-            trade.getBTCValue();
+            StockHistory historyOfBTC = new StockHistory(trade.getBTCValue());
+            System.out.println("Price:"+ historyOfBTC.getPriceEvaluation().getFirst().getSell());
         }
 
 }
