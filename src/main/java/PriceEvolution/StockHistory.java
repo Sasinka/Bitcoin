@@ -6,7 +6,7 @@ import Currency.Currency;
 import java.util.LinkedList;
 
 public class StockHistory {
-    LinkedList<Currency> priceEvaluation;
+    private LinkedList<Currency> priceEvaluation;
 
 
     public StockHistory(Currency currency) {

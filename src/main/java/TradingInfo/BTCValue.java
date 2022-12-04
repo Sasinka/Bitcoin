@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class BTCValue {
-    static String BTCexchangeRate;
+    private static String BTCexchangeRate;
 
     public static boolean connect() throws IOException {
         // URL url = new URL("https://blockchain.info/tobtc?currency=EUR&value=500");//vrátí jednu hodnotu
@@ -51,6 +51,7 @@ public class BTCValue {
         String BTCexchangeRate = this.BTCexchangeRate;
         System.out.println(BTCexchangeRate); // vypíše celý json
 
+        Currency cur = mapper.readValue(BTCexchangeRate, Currency.class);
 
         //Jako json node
         JsonNode jsonNode = mapper.readTree(BTCexchangeRate);
